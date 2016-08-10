@@ -1,0 +1,9 @@
+E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\bin\Debug\LaunryManager.exe.config
+E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\bin\Debug\LaunryManager.exe
+E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\bin\Debug\LaunryManager.pdb
+E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.csprojResolveAssemblyReference.cache
+E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.Form1.resources
+E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.Properties.Resources.resources
+E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.csproj.GenerateResource.Cache
+E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.exe
+E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.pdb
