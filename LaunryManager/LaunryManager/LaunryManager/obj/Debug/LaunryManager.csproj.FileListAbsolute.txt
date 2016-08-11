@@ -7,3 +7,4 @@ E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.Pr
 E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.csproj.GenerateResource.Cache
 E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.exe
 E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.pdb
+E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.Main.resources

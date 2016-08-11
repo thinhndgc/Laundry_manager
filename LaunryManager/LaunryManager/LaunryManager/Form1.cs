@@ -13,17 +13,26 @@ namespace LaunryManager
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            Login();
+        }
+
+        private void Login()
+        {
             String username = txtUsername.Text.ToString();
             String password = txtPassword.Text.ToString();
             if (loginValidate())
             {
-                if (checkLogin(username,password))
+                if (checkLogin(username, password))
                 {
-                    MessageBox.Show("Login success!");
+                    Main mainForm = new Main();
+                    this.Visible = false;
+                    mainForm.ShowDialog();
+                    this.Close();
+
                 }
                 else
                 {
-                    MessageBox.Show("Login fail!");
+                    MessageBox.Show("Invalid user!");
                 }
             }
         }
@@ -77,6 +86,22 @@ namespace LaunryManager
             else
             {
                 return true;
+            }
+        }
+
+        private void txtUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Login();
+            }
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Login();
             }
         }
     }
