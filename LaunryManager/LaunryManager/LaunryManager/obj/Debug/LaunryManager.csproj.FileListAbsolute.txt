@@ -8,3 +8,4 @@ E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.cs
 E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.exe
 E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.pdb
 E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.Main.resources
+E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.ChangePassword.resources

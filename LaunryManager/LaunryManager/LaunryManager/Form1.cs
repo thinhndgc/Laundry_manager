@@ -18,23 +18,59 @@ namespace LaunryManager
 
         private void Login()
         {
-            String username = txtUsername.Text.ToString();
-            String password = txtPassword.Text.ToString();
+            string username, password;
+            getAccountInput(out username, out password);
             if (loginValidate())
             {
                 if (checkLogin(username, password))
                 {
-                    Main mainForm = new Main();
-                    this.Visible = false;
-                    mainForm.ShowDialog();
-                    this.Close();
+                    checkUserType(username);
+                    setUserName(username);
+                    openMainForm();
 
                 }
                 else
                 {
-                    MessageBox.Show("Invalid user!");
+                    showLoginError();
                 }
             }
+        }
+
+        private static void setUserName(string username)
+        {
+            Global.AccountName = username;
+        }
+
+        private static void showLoginError()
+        {
+            MessageBox.Show("Invalid user!");
+        }
+
+        private void getAccountInput(out string username, out string password)
+        {
+            username = txtUsername.Text.ToString();
+            password = txtPassword.Text.ToString();
+        }
+
+        private static void checkUserType(string username)
+        {
+            if (username.Equals("admin"))
+            {
+
+                Global.AccountType = "admin";
+            }
+            else
+            {
+                Global.AccountType = "user";
+            }
+        }
+
+        private void openMainForm()
+        {
+            Main mainForm = new Main();
+            this.Visible = false;
+            mainForm.ShowDialog();
+            this.Close();
         }
 
         private Boolean checkLogin(String username, String password)
