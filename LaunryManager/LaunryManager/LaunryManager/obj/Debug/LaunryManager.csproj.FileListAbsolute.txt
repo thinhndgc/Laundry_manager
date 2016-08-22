@@ -9,3 +9,4 @@ E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.ex
 E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.pdb
 E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.Main.resources
 E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.ChangePassword.resources
+E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.AddStaff.resources

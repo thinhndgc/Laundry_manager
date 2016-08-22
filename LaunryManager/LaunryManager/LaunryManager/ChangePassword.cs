@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace LaunryManager
 {
     public partial class ChangePassword : Form
     {
+        String account = Global.AccountName;
+        databaseContext db = new databaseContext();
         public ChangePassword()
         {
             InitializeComponent();
@@ -24,7 +27,6 @@ namespace LaunryManager
 
         private void setAccountName()
         {
-            var account = Global.AccountName;
             accountName.Text = account;
         }
 
@@ -61,7 +63,70 @@ namespace LaunryManager
 
         private void checkCurrentPassword()
         {
-            throw new NotImplementedException();
+            String query;
+            String currentPass = txtCurrentPassword.Text.ToString();
+            String newPass = txtNewPassword.Text.ToString();
+            int count = 0;
+            SqlConnection conn = db.getConnection();
+            query = "select * from Staff where account = '" + account + "' and password = '" + currentPass + "'";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dbr;
+            conn.Open();
+            dbr = cmd.ExecuteReader();
+            while (dbr.Read())
+            {
+                count = count + 1;
+            }
+            conn.Close();
+            if (count == 0)
+            {
+                showOldPasswordErr();
+            }
+            else
+            {
+                changePass(newPass);
+            }
+        }
+
+        private void resetField()
+        {
+            txtCurrentPassword.Text = "";
+            txtNewPassword.Text = "";
+            txtConfirmNewPassword.Text = "";
+        }
+
+        private void changePass(string newPass)
+        {
+            SqlConnection conn = db.getConnection();
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "update Staff set password = '" + newPass + "' where account = '" + account + "'";
+            conn.Open();
+            int count = cmd.ExecuteNonQuery();
+            if (count > 0)
+            {
+                ShowSuccessMess();
+                resetField();
+            }
+            else
+            {
+                ShowUpdatePasswordErr();
+            }
+            conn.Close();
+        }
+
+        private static void ShowUpdatePasswordErr()
+        {
+            MessageBox.Show("Have an error when change your password!");
+        }
+
+        private static void ShowSuccessMess()
+        {
+            MessageBox.Show("Your password is changed!");
+        }
+
+        private static void showOldPasswordErr()
+        {
+            MessageBox.Show("Your old password is not match!");
         }
 
         private void showConfirmPasswordErr()
