@@ -30,15 +30,19 @@ constraint pk_services primary key (SID)
 )
 go
 
+
 create table Bill(
 BID int IDENTITY(1,1),
 [SID] int,
+STID int,
 quantity int,
 receiveDate date,
 returnDate date,
 [status] int,
+[description] nvarchar(150),
 constraint pk_bill primary key (BID),
-constraint fk_bill_to_Service foreign key ([SID]) references Services
+constraint fk_bill_to_Service foreign key ([SID]) references Services,
+constraint fk_bill_to_Staff foreign key (STID) references Staff
 )
 go
 
