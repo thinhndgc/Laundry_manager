@@ -32,12 +32,12 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.accountManagerPanel = new System.Windows.Forms.Panel();
+            this.cbSearchType = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.staffGrid = new System.Windows.Forms.DataGridView();
             this.btnNewStaff = new System.Windows.Forms.Button();
-            this.cbSearchType = new System.Windows.Forms.ComboBox();
             this.accountManagerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.staffGrid)).BeginInit();
             this.SuspendLayout();
@@ -67,6 +67,16 @@
             this.accountManagerPanel.Size = new System.Drawing.Size(1284, 711);
             this.accountManagerPanel.TabIndex = 2;
             this.accountManagerPanel.Visible = false;
+            // 
+            // cbSearchType
+            // 
+            this.cbSearchType.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSearchType.ForeColor = System.Drawing.Color.DarkCyan;
+            this.cbSearchType.FormattingEnabled = true;
+            this.cbSearchType.Location = new System.Drawing.Point(970, 15);
+            this.cbSearchType.Name = "cbSearchType";
+            this.cbSearchType.Size = new System.Drawing.Size(161, 39);
+            this.cbSearchType.TabIndex = 5;
             // 
             // btnSearch
             // 
@@ -120,6 +130,7 @@
             this.staffGrid.Name = "staffGrid";
             this.staffGrid.Size = new System.Drawing.Size(1260, 608);
             this.staffGrid.TabIndex = 1;
+            this.staffGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.staffGrid_CellContentClick);
             this.staffGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.staffGrid_CellFormatting);
             // 
             // btnNewStaff
@@ -135,16 +146,6 @@
             this.btnNewStaff.Text = "New Staff";
             this.btnNewStaff.UseVisualStyleBackColor = false;
             this.btnNewStaff.Click += new System.EventHandler(this.btnNewStaff_Click);
-            // 
-            // cbSearchType
-            // 
-            this.cbSearchType.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbSearchType.ForeColor = System.Drawing.Color.DarkCyan;
-            this.cbSearchType.FormattingEnabled = true;
-            this.cbSearchType.Location = new System.Drawing.Point(970, 15);
-            this.cbSearchType.Name = "cbSearchType";
-            this.cbSearchType.Size = new System.Drawing.Size(161, 39);
-            this.cbSearchType.TabIndex = 5;
             // 
             // Main
             // 

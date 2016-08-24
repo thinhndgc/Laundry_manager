@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LaunryManager;
 
 namespace LaunryManager
 {
@@ -63,6 +64,7 @@ namespace LaunryManager
 
         public void loadStaffAccount()
         {
+            clearStaffGrid();
             try
             {
                 String query = "select * from Staff where account not in ('admin')";
@@ -102,6 +104,14 @@ namespace LaunryManager
                 staffGrid.Columns.Add(btnDel);
                 btnDel.UseColumnTextForButtonValue = true;
             }
+        }
+
+        private void clearStaffGrid()
+        {
+            staffGrid.DataSource = null;
+            staffGrid.Columns.Clear();
+            staffGrid.Rows.Clear();
+            staffGrid.Refresh();
         }
 
         private void staffGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -203,6 +213,86 @@ namespace LaunryManager
             if (e.KeyCode == Keys.Enter)
             {
                 Search();
+            }
+        }
+
+        private void staffGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == staffGrid.Columns[4].Index && e.RowIndex >= 0)
+            {
+                if (confirmDeleteStaff())
+                {
+                    deleteStaff();
+                }
+               
+            }
+        }
+
+        private void deleteStaff()
+        {
+            Staff stf = getSelectedStaff();
+            try
+            {
+                SqlConnection conn = db.getConnection();
+                String query = "delete from Staff where StaffID = @StaffID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@StaffID", SqlDbType.Int).Value = Convert.ToInt32(stf.id);
+                    conn.Open();
+                    int count = cmd.ExecuteNonQuery();
+                    if (count > 0)
+                    {
+                        showDeleteStaffSuccessMessage();
+                        loadStaffAccount();
+                    }
+                    else
+                    {
+                        ShowDeleteStaffErrorMessage();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
+
+        private void showDeleteStaffSuccessMessage()
+        {
+            MessageBox.Show("Deleted!");
+        }
+
+        private void ShowDeleteStaffErrorMessage()
+        {
+            MessageBox.Show("Delete error!");
+        }
+
+        private LaunryManager.Staff getSelectedStaff()
+        {
+            int id;
+            String staffName, account, password;
+            int rowindex = staffGrid.CurrentCell.RowIndex;
+            id = Convert.ToInt32(staffGrid.Rows[rowindex].Cells[0].Value.ToString());
+            staffName = staffGrid.Rows[rowindex].Cells[1].Value.ToString(); ;
+            account = staffGrid.Rows[rowindex].Cells[2].Value.ToString();
+            password = staffGrid.Rows[rowindex].Cells[3].Value.ToString();
+            Staff stf = new Staff(id,staffName,account,password);
+            return stf;
+        }
+
+        private Boolean confirmDeleteStaff()
+        {
+            LaunryManager.Staff stf = getSelectedStaff();
+            DialogResult dr = MessageBox.Show("Are you sure to delete staff "+stf.staffName+"?", "Confirm delele", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dr == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

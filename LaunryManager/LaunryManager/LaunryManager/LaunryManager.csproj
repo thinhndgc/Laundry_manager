@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Staff.cs" />
     <EmbeddedResource Include="AddStaff.resx">
       <DependentUpon>AddStaff.cs</DependentUpon>
     </EmbeddedResource>
