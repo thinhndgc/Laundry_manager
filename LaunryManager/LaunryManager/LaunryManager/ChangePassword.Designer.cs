@@ -132,7 +132,7 @@
             this.btnChangePassoword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChangePassoword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChangePassoword.ForeColor = System.Drawing.Color.White;
-            this.btnChangePassoword.Location = new System.Drawing.Point(16, 334);
+            this.btnChangePassoword.Location = new System.Drawing.Point(16, 324);
             this.btnChangePassoword.Name = "btnChangePassoword";
             this.btnChangePassoword.Size = new System.Drawing.Size(456, 48);
             this.btnChangePassoword.TabIndex = 8;
@@ -184,7 +184,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(484, 461);
+            this.ClientSize = new System.Drawing.Size(484, 405);
             this.Controls.Add(this.confirmPassErr);
             this.Controls.Add(this.newPassErr);
             this.Controls.Add(this.currentPassErr);

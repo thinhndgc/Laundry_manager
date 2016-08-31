@@ -121,6 +121,11 @@
             // 
             // staffGrid
             // 
+            this.staffGrid.AllowUserToAddRows = false;
+            this.staffGrid.AllowUserToDeleteRows = false;
+            this.staffGrid.AllowUserToOrderColumns = true;
+            this.staffGrid.AllowUserToResizeColumns = false;
+            this.staffGrid.AllowUserToResizeRows = false;
             this.staffGrid.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.staffGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.staffGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -128,6 +133,8 @@
             this.staffGrid.Location = new System.Drawing.Point(12, 74);
             this.staffGrid.MultiSelect = false;
             this.staffGrid.Name = "staffGrid";
+            this.staffGrid.ReadOnly = true;
+            this.staffGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.staffGrid.Size = new System.Drawing.Size(1260, 608);
             this.staffGrid.TabIndex = 1;
             this.staffGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.staffGrid_CellContentClick);
@@ -151,11 +158,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1284, 711);
             this.Controls.Add(this.accountManagerPanel);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1300, 750);
+            this.MinimumSize = new System.Drawing.Size(1300, 750);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Laundry Manager";
