@@ -38,8 +38,16 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.staffGrid = new System.Windows.Forms.DataGridView();
             this.btnNewStaff = new System.Windows.Forms.Button();
+            this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip4 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnServiceRefresh = new System.Windows.Forms.Button();
+            this.serviceGrid = new System.Windows.Forms.DataGridView();
+            this.btnNewService = new System.Windows.Forms.Button();
             this.accountManagerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.staffGrid)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -154,6 +162,77 @@
             this.btnNewStaff.UseVisualStyleBackColor = false;
             this.btnNewStaff.Click += new System.EventHandler(this.btnNewStaff_Click);
             // 
+            // contextMenuStrip3
+            // 
+            this.contextMenuStrip3.Name = "contextMenuStrip1";
+            this.contextMenuStrip3.Size = new System.Drawing.Size(61, 4);
+            // 
+            // contextMenuStrip4
+            // 
+            this.contextMenuStrip4.Name = "contextMenuStrip2";
+            this.contextMenuStrip4.Size = new System.Drawing.Size(61, 4);
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnServiceRefresh);
+            this.panel2.Controls.Add(this.serviceGrid);
+            this.panel2.Controls.Add(this.btnNewService);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1284, 711);
+            this.panel2.TabIndex = 5;
+            this.panel2.Visible = false;
+            // 
+            // btnServiceRefresh
+            // 
+            this.btnServiceRefresh.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnServiceRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnServiceRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnServiceRefresh.ForeColor = System.Drawing.Color.White;
+            this.btnServiceRefresh.Location = new System.Drawing.Point(168, 15);
+            this.btnServiceRefresh.Name = "btnServiceRefresh";
+            this.btnServiceRefresh.Size = new System.Drawing.Size(126, 41);
+            this.btnServiceRefresh.TabIndex = 2;
+            this.btnServiceRefresh.Text = "Refresh";
+            this.btnServiceRefresh.UseVisualStyleBackColor = false;
+            this.btnServiceRefresh.Click += new System.EventHandler(this.btnServiceRefresh_Click);
+            // 
+            // serviceGrid
+            // 
+            this.serviceGrid.AllowUserToAddRows = false;
+            this.serviceGrid.AllowUserToDeleteRows = false;
+            this.serviceGrid.AllowUserToOrderColumns = true;
+            this.serviceGrid.AllowUserToResizeColumns = false;
+            this.serviceGrid.AllowUserToResizeRows = false;
+            this.serviceGrid.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.serviceGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.serviceGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.serviceGrid.GridColor = System.Drawing.Color.DarkCyan;
+            this.serviceGrid.Location = new System.Drawing.Point(12, 74);
+            this.serviceGrid.MultiSelect = false;
+            this.serviceGrid.Name = "serviceGrid";
+            this.serviceGrid.ReadOnly = true;
+            this.serviceGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.serviceGrid.Size = new System.Drawing.Size(1260, 608);
+            this.serviceGrid.TabIndex = 1;
+            this.serviceGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.serviceGrid_CellContentClick);
+            // 
+            // btnNewService
+            // 
+            this.btnNewService.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnNewService.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewService.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewService.ForeColor = System.Drawing.Color.White;
+            this.btnNewService.Location = new System.Drawing.Point(12, 15);
+            this.btnNewService.Name = "btnNewService";
+            this.btnNewService.Size = new System.Drawing.Size(126, 41);
+            this.btnNewService.TabIndex = 0;
+            this.btnNewService.Text = "New Service";
+            this.btnNewService.UseVisualStyleBackColor = false;
+            this.btnNewService.Click += new System.EventHandler(this.btnNewService_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,6 +240,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1284, 711);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.accountManagerPanel);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1300, 750);
@@ -172,6 +252,8 @@
             this.accountManagerPanel.ResumeLayout(false);
             this.accountManagerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.staffGrid)).EndInit();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.serviceGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -187,5 +269,11 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.ComboBox cbSearchType;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip4;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnServiceRefresh;
+        private System.Windows.Forms.DataGridView serviceGrid;
+        private System.Windows.Forms.Button btnNewService;
     }
 }

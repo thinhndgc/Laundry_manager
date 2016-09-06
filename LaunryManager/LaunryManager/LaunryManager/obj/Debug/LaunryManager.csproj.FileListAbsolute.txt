@@ -11,3 +11,5 @@ E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.Ma
 E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.ChangePassword.resources
 E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.AddStaff.resources
 E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.UpdateStaffAccount.resources
+E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.newService.resources
+E:\My's Prj\LaunryManager\LaunryManager\LaunryManager\obj\Debug\LaunryManager.UpdateService.resources

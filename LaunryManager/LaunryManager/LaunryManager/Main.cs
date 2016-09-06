@@ -15,6 +15,7 @@ namespace LaunryManager
     public partial class Main : Form
     {
         databaseContext db = new databaseContext();
+        String menuName = "orders";
         public Main()
         {
             InitializeComponent();
@@ -27,19 +28,64 @@ namespace LaunryManager
 
         }
 
+        private void setPanel()
+        {
+            switch (menuName)
+            {
+                case "orders":
+
+                    break;
+                case "account":
+                    accountManagerPanel.Visible = false;
+                    break;
+                case "customer":
+                    break;
+                case "services":
+                    panel2.Visible = false;
+                    break;
+                case "statistic":
+                    break;
+                default:
+                    break;
+            }
+        }
+
         // Create menu bar
         private void createMenuBar()
         {
             this.Menu = new MainMenu();
-            MenuItem item = new MenuItem("Account");
-            this.Menu.MenuItems.Add(item);
+            MenuItem accountMenu = new MenuItem("Account");
+            MenuItem orderMenu= new MenuItem("Orders", new EventHandler(ordersManager_Click));
+            this.Menu.MenuItems.Add(accountMenu);
+            this.Menu.MenuItems.Add(orderMenu);
             if (Global.AccountType.Equals("admin"))
             {
-                item.MenuItems.Add("Account manager", new EventHandler(accountManager_Click));
+                accountMenu.MenuItems.Add("Account manager", new EventHandler(accountManager_Click));
+                MenuItem customerMenu = new MenuItem("Customer", new EventHandler(customerManager_Click));
+                MenuItem serviceMenu = new MenuItem("Service", new EventHandler(serviceManager_Click));
+                MenuItem statisticMenu = new MenuItem("Statistic", new EventHandler(statistic_Click));
+                this.Menu.MenuItems.Add(customerMenu);
+                this.Menu.MenuItems.Add(serviceMenu);
+                this.Menu.MenuItems.Add(statisticMenu);
             }
-            item.MenuItems.Add("Change password", new EventHandler(changePassword_Click));
-            item.MenuItems.Add("Logout", new EventHandler(logout_Click));
-            item.MenuItems.Add("Exit", new EventHandler(exit_Click));
+            accountMenu.MenuItems.Add("Change password", new EventHandler(changePassword_Click));
+            accountMenu.MenuItems.Add("Logout", new EventHandler(logout_Click));
+            accountMenu.MenuItems.Add("Exit", new EventHandler(exit_Click));
+        }
+
+        private void statistic_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void customerManager_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ordersManager_Click(object sender, EventArgs e)
+        {
+
         }
 
         // ***************************************************************************************************
@@ -99,8 +145,10 @@ namespace LaunryManager
         // Initial account manager work screen
         private void initAccountManagerPanel()
         {
+            setPanel();
             accountManagerPanel.Visible = true;
             loadStaffAccount();
+            menuName = "account";
         }
 
         // Set value to staff search combobox
@@ -370,6 +418,216 @@ namespace LaunryManager
 
         // ***************************************************************************************************
         // ***                                 Staff manager area end                                      ***
+        // ***************************************************************************************************
+
+
+        // ***************************************************************************************************
+        // ***                            Services manager menu area start                                 ***
+        // ***************************************************************************************************
+
+        private void serviceManager_Click(object sender, EventArgs e)
+        {
+            initServicesPanel();
+        }
+
+        private void initServicesPanel()
+        {
+            setPanel();
+            accountManagerPanel.Visible = false;
+            panel2.Visible = true;
+            menuName = "services";
+            loadService();
+        }
+
+        // Set style, add columns to staff gridview
+        private void setServiceGridColStyle()
+        {
+            if (staffGrid != null)
+            {
+                setServiceGridColumnStyle();
+                addDeleteButtonToServiceGrid();
+                addUpdateButtonToServiceGrid();
+            }
+        }
+
+        // Set text to service gridview colums header, set auto size colums
+        private void setServiceGridColumnStyle()
+        {
+            serviceGrid.Columns[0].Visible = false;
+            serviceGrid.Columns[1].HeaderText = "Service Name";
+            serviceGrid.Columns[2].HeaderText = "Price per Kg";
+            serviceGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        // Add update button to service gridview
+        private void addUpdateButtonToServiceGrid()
+        {
+            DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
+            btnUpdate.HeaderText = "";
+            btnUpdate.Text = "Update";
+            btnUpdate.Name = "btnUpdate";
+            serviceGrid.Columns.Add(btnUpdate);
+            btnUpdate.UseColumnTextForButtonValue = true;
+        }
+
+        // Add delete button to service gridview
+        private void addDeleteButtonToServiceGrid()
+        {
+            DataGridViewButtonColumn btnDel = new DataGridViewButtonColumn();
+            btnDel.HeaderText = "";
+            btnDel.Text = "Delete";
+            btnDel.Name = "btnDetele";
+            serviceGrid.Columns.Add(btnDel);
+            btnDel.UseColumnTextForButtonValue = true;
+        }
+
+        // Clear data on staff gridview
+        private void clearServiceGrid()
+        {
+            serviceGrid.DataSource = null;
+            serviceGrid.Columns.Clear();
+            serviceGrid.Rows.Clear();
+            serviceGrid.Refresh();
+        }
+
+        // Load service data to gridview
+        private void loadService()
+        {
+            clearServiceGrid();
+            try
+            {
+                getServiceData();
+            }
+            catch (SqlException ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        // Get service data from DB
+        private void getServiceData()
+        {
+            String query = "select * from Services";
+            SqlConnection conn = db.getConnection();
+            var table = new DataTable();
+            conn.Open();
+            using (var da = new SqlDataAdapter(query, conn))
+            {
+                da.Fill(table);
+            }
+            serviceGrid.DataSource = table;
+            setServiceGridColStyle();
+            conn.Close();
+        }
+
+        // Refresh service data
+        private void btnServiceRefresh_Click(object sender, EventArgs e)
+        {
+            clearServiceGrid();
+            loadService();
+        }
+
+        // New service handler
+        private void btnNewService_Click(object sender, EventArgs e)
+        {
+            newService ns = new newService();
+            ns.ShowDialog();
+        }
+
+        // Add event to detele and update button
+        private void serviceGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == serviceGrid.Columns[3].Index && e.RowIndex >= 0)
+            {
+                if (confirmDeleteService())
+                {
+                    deleteService();
+                }
+            }
+            if (e.ColumnIndex == serviceGrid.Columns[4].Index && e.RowIndex >= 0)
+            {
+                Global.Sv = getSelectedService();
+                UpdateService uss = new UpdateService();
+                uss.ShowDialog();
+            }
+        }
+
+        // Confirm delete service
+        private Boolean confirmDeleteService()
+        {
+            LaunryManager.Services sv = getSelectedService();
+            DialogResult dr = MessageBox.Show("Are you sure to delete service " + sv.serviceName + "?", "Confirm delele", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (dr == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // Detele selected service
+        private void deleteService()
+        {
+            Services sv = getSelectedService();
+            try
+            {
+                SqlConnection conn = db.getConnection();
+                String query = "delete from Services where SID = @ServiceID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.Add("@ServiceID", SqlDbType.Int).Value = Convert.ToInt32(sv.id);
+                    conn.Open();
+                    int count = cmd.ExecuteNonQuery();
+                    if (count > 0)
+                    {
+                        showDeleteServiceSuccessMessage();
+                        loadService();
+                    }
+                    else
+                    {
+                        ShowDeleteServiceErrorMessage();
+                    }
+                    conn.Close();
+                }
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+        }
+
+        // Get selected service in gridview
+        private LaunryManager.Services getSelectedService()
+        {
+            int id, price;
+            String serviceName;
+            int rowindex = serviceGrid.CurrentCell.RowIndex;
+            id = Convert.ToInt32(serviceGrid.Rows[rowindex].Cells[0].Value.ToString());
+            serviceName = serviceGrid.Rows[rowindex].Cells[1].Value.ToString(); ;
+            price = Convert.ToInt32(serviceGrid.Rows[rowindex].Cells[2].Value.ToString());
+            LaunryManager.Services sv = new Services(id, serviceName, price);
+            return sv;
+        }
+
+        // Show message area start 
+        private void showDeleteServiceSuccessMessage()
+        {
+            MessageBox.Show("Deleted!");
+        }
+
+        private void ShowDeleteServiceErrorMessage()
+        {
+            MessageBox.Show("Delete error!");
+        }
+
+        // Show message area end
+
+        // ***************************************************************************************************
+        // ***                            Services manager menu area end                                   ***
         // ***************************************************************************************************
     }
 }

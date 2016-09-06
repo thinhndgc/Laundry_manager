@@ -72,9 +72,22 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="newService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="newService.Designer.cs">
+      <DependentUpon>newService.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services.cs" />
     <Compile Include="Staff.cs" />
+    <Compile Include="UpdateService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateService.Designer.cs">
+      <DependentUpon>UpdateService.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateStaffAccount.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +106,9 @@
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="newService.resx">
+      <DependentUpon>newService.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -102,6 +118,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UpdateService.resx">
+      <DependentUpon>UpdateService.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateStaffAccount.resx">
       <DependentUpon>UpdateStaffAccount.cs</DependentUpon>
     </EmbeddedResource>

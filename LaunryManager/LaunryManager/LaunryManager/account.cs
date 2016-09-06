@@ -11,6 +11,7 @@ namespace LaunryManager
         private static String _accountType = "";
         private static String _accountName = "";
         private static Staff st = null;
+        private static Services sv = null;
 
         public static string AccountType
         {
@@ -48,6 +49,19 @@ namespace LaunryManager
             set
             {
                 st = value;
+            }
+        }
+
+        internal static Services Sv
+        {
+            get
+            {
+                return sv;
+            }
+
+            set
+            {
+                sv = value;
             }
         }
     }
